@@ -6,21 +6,23 @@ using Random = UnityEngine.Random;
 
 public class CreateFruits : MonoBehaviour
 {
-    public GameObject[] fruitsPrefabs;
-    private GameObject fruit, newFruit;
+    [SerializeField]
+    private GameObject[] fruitsPrefabs;
+    
+    private GameObject _fruit, _newFruit;
     
     private void Start()
     {
-        newFruit = RandomFruit();
+        _newFruit = RandomFruit();
     }
 
     private void Update()
     {
-        if (newFruit.transform.position.z <= 17f)
+        if (_newFruit.transform.position.z <= 17f)
         {
             CreateFruit();
         }
-        else if (newFruit  !=  null && newFruit.transform.position.z <= 17f)
+        else if (_newFruit  !=  null && _newFruit.transform.position.z <= 17f)
         {
             CreateFruit();
         }
@@ -28,7 +30,7 @@ public class CreateFruits : MonoBehaviour
     
     private void CreateFruit()
     {
-        newFruit = Instantiate(RandomFruit(), new Vector3(0f, 4.20f, 23f), Quaternion.identity);
+        _newFruit = Instantiate(RandomFruit(), new Vector3(0f, 4.20f, 23f), Quaternion.identity);
     }
     
 
@@ -39,18 +41,18 @@ public class CreateFruits : MonoBehaviour
         switch (random)
         {
             case 0 :
-                fruit = fruitsPrefabs[0];
+                _fruit = fruitsPrefabs[0];
                 break;
             case 1 :
-                fruit = fruitsPrefabs[1];
+                _fruit = fruitsPrefabs[1];
                 break;
             case 2 :
-                fruit = fruitsPrefabs[2];
+                _fruit = fruitsPrefabs[2];
                 break;
             default :
-                fruit = fruitsPrefabs[0];
+                _fruit = fruitsPrefabs[0];
                 break;
         }
-        return fruit;
+        return _fruit;
     }
 }

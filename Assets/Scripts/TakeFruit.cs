@@ -7,79 +7,88 @@ using UnityEngine.UI;
 
 public class TakeFruit : MonoBehaviour
 {
-    private GameObject currentFruit;
-    private bool canTake;
-    public Animator Animator;
-    public GameObject fruitPoint, bascet;
-    public TMP_Text plusOne;
-    public Animation _animation;
     [SerializeField]
-    private TaskGeneration _taskGeneration;
+    private TaskGeneration taskGeneration;
     [SerializeField] 
-    private LevelPassed _levelPassed;
+    private LevelPassed levelPassed;
     [SerializeField] 
     private GameObject pointBascetDrop;
+    [SerializeField]
+    private Animator animator;
+    [SerializeField] 
+    private GameObject fruitPoint;
+    [SerializeField]
+    private GameObject bascet;
+    [SerializeField] 
+    private TMP_Text plusOne;
+    [SerializeField]
+    private Animation animation;
+    
+    private GameObject _currentFruit;
+    private bool _canTake;
+    
+    
     
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Animator.SetBool("Take", true);
+            animator.SetBool("Take", true);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!canTake && other.CompareTag("Fruits"))
+        if (!_canTake && other.CompareTag("Fruits"))
         {
-            currentFruit = other.gameObject;
-            currentFruit.transform.localScale = new Vector3(15f,15f,15f);
-            currentFruit.GetComponent<Rigidbody>().isKinematic = true;
-            currentFruit.transform.parent = transform;
-            currentFruit.transform.localPosition = Vector3.zero;
-            currentFruit.transform.localRotation = Quaternion.identity;
-            canTake = true;
+            _currentFruit = other.gameObject;
+            _currentFruit.transform.localScale = new Vector3(15f,15f,15f);
+            _currentFruit.GetComponent<Rigidbody>().isKinematic = true;
+            _currentFruit.transform.parent = transform;
+            _currentFruit.transform.localPosition = Vector3.zero;
+            _currentFruit.transform.localRotation = Quaternion.identity;
+            _canTake = true;
         }
         
         if (other.CompareTag("Basket"))
         {
-            if (canTake )
+            if (_canTake )
             {
-                if (_taskGeneration._fruit == currentFruit.GetComponent<FruitComponent>().Fruit)
+                if (taskGeneration.fruit == _currentFruit.GetComponent<FruitComponent>().Fruit)
                 {
                     plusOne.gameObject.SetActive(true);
-                    _animation.Play();
+                    animation.Play();
                     StartCoroutine(StopAnimation());
-                    _taskGeneration.collectedFruits++;
-                    _taskGeneration.collected.text = "Collected "+ _taskGeneration.collectedFruits;
-                    if (_taskGeneration.collectedFruits == _taskGeneration.randomFruit)
+                    taskGeneration.collectedFruits++;
+                    taskGeneration.collected.text = "Collected "+ taskGeneration.collectedFruits;
+                    if (taskGeneration.collectedFruits == taskGeneration.randomFruit)
                     {
                         bascet.GetComponent<Rigidbody>().isKinematic = false;
                         bascet.transform.position = pointBascetDrop.transform.position;
 
                         bascet.transform.SetParent(null);
-                        _taskGeneration.collected.gameObject.SetActive(false);
-                        _taskGeneration.collectFruits.gameObject.SetActive(false);
-                        _levelPassed.RemoveConveyor();
+                        taskGeneration.collected.gameObject.SetActive(false);
+                        taskGeneration.collectFruits.gameObject.SetActive(false);
+                        levelPassed.RemoveConveyor();
                         
-                        Animator.SetBool("Dance", true);
+                        animator.SetBool("Dance", true);
                     }
                 }
-                currentFruit.transform.parent = bascet.transform;
-                currentFruit.transform.position = fruitPoint.transform.position ;
-                currentFruit.GetComponent<Rigidbody>().isKinematic = false;
-                canTake = false;
-                currentFruit = null;
-                canTake = false;
+                _currentFruit.transform.parent = bascet.transform;
+                _currentFruit.transform.position = fruitPoint.transform.position ;
+                _currentFruit.GetComponent<Rigidbody>().isKinematic = false;
+                _canTake = false;
+                _currentFruit = null;
+                _canTake = false;
             }
-            Animator.SetBool("Take", false);
+            animator.SetBool("Take", false);
         }
     }
 
     IEnumerator StopAnimation()
     {
         yield return new WaitForSeconds(1f);
-        _animation.Stop();
+        animation.Stop();
         plusOne.gameObject.SetActive(false);
     }
 }

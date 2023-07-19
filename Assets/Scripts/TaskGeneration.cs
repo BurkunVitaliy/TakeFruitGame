@@ -10,9 +10,10 @@ public class TaskGeneration : MonoBehaviour
 {
     public TMP_Text collectFruits;
     public TMP_Text collected;
-    private string fruit;
-    public Fruits _fruit;
+    public Fruits fruit;
     public  int collectedFruits, randomFruit;
+    
+    private string _fruitText;
     
    
     private void Start()
@@ -24,7 +25,7 @@ public class TaskGeneration : MonoBehaviour
     
     public int RandomNumber()
     {
-        int random = Random.Range(1, 5);
+        int random = Random.Range(1, 6);
         return random;
     }
     
@@ -35,22 +36,22 @@ public class TaskGeneration : MonoBehaviour
         switch (random)
         {
             case 0 :
-                fruit = "Apples";
-                _fruit = Fruits.Apple;
+                _fruitText = "Apples";
+                fruit = Fruits.Apple;
                 break;
             case 1 :
-                fruit = "Bananas";
-                _fruit = Fruits.Banana;
+                _fruitText = "Bananas";
+                fruit = Fruits.Banana;
                 break;
             case 2 :
-                fruit = "Lemons";
-                _fruit = Fruits.Lemon;
+                _fruitText = "Lemons";
+                fruit = Fruits.Lemon;
                 break;
             default :
-                fruit = "Apples";
-                _fruit = Fruits.Apple;
+                _fruitText = "Apples";
+                fruit = Fruits.Apple;
                 break;
         }
-        return fruit;
+        return _fruitText;
     }
 }

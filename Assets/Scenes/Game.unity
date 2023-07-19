@@ -385,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectFruits: {fileID: 109391524}
   collected: {fileID: 1993452737}
-  _fruit: 0
+  fruit: 0
   collectedFruits: 0
   randomFruit: 0
 --- !u!1 &123344309
@@ -1824,9 +1824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7964ba8bd1ff7f4787263adfd1d43cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: f2f89a7d6842d334b8291114695bd8c2, type: 2}
   speed: 3
   speedMaterial: 15
-  material: {fileID: 2100000, guid: f2f89a7d6842d334b8291114695bd8c2, type: 2}
 --- !u!54 &1073931412
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2011,10 +2011,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7f4b2a8ab8ec2418630b754b5b62bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _conveyor: {fileID: 123344309}
-  _nextLevelButton: {fileID: 184820577}
-  _text: {fileID: 2023345307}
-  _image: {fileID: 1502132018}
+  conveyor: {fileID: 123344309}
+  nextLevelButton: {fileID: 184820577}
+  text: {fileID: 2023345307}
+  image: {fileID: 1502132018}
 --- !u!4 &1172612504
 Transform:
   m_ObjectHideFlags: 0
@@ -2169,14 +2169,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375f5f53b6b7d894bb65add632c3acf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 1441471297}
+  taskGeneration: {fileID: 109391526}
+  levelPassed: {fileID: 1172612503}
+  pointBascetDrop: {fileID: 1141766608}
+  animator: {fileID: 1441471297}
   fruitPoint: {fileID: 802728110}
   bascet: {fileID: 277157106}
   plusOne: {fileID: 2085700753}
-  _animation: {fileID: 2085700756}
-  _taskGeneration: {fileID: 109391526}
-  _levelPassed: {fileID: 1172612503}
-  pointBascetDrop: {fileID: 1141766608}
+  animation: {fileID: 2085700756}
 --- !u!65 &1342879547
 BoxCollider:
   m_ObjectHideFlags: 0
